@@ -6,24 +6,30 @@
         <router-link to="/">
         <h1 class="font-headings text-xl font-bold ml-1">Inköpslistan</h1>
         </router-link>
+     </div>
 
-    </div>
+     <div class="justify-self-end">
+        <SearchBox />
+     </div>
 
-    <div>
+    <div class="self-center">
         <LogoutBtn />
 
     </div>
     </div>
 
 </header>
+
 </template>
 
 <script>
 import LogoutBtn from '../components/LogoutBtn.vue';
+import SearchBox from '../components/Searchbox.vue';
 
 export default {
     components: {
-        LogoutBtn
+        LogoutBtn,
+        SearchBox
     }
 }
 </script>

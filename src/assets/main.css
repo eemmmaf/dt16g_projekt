@@ -1,5 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
-*{
+* {
   box-sizing: border-box;
+}
+
+body {
+  color: #2D2C2C;
+}
+
+h2 {
+  color: #2D2C2C;
+  font-size: 1.4rem;
+  font-weight: bold;
+  font-family: 'Manrope', 'Open-Sans', 'sans-serif';
+}
+
+h3{
+  color: #2D2C2C;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: 'Manrope', 'Open-Sans', 'sans-serif';
 }

@@ -4,7 +4,7 @@
     module.exports = {
       content: [
         "./index.html",
-        "./src/**/*.{vue,js,ts,jsx,tsx}"
+        "./src/**/*.{js,ts,jsx,tsx,vue}"
       ],
       theme: {
         extend: {
@@ -24,8 +24,8 @@
         },
         fontSize: {
           sm: '1rem',
-          base: '1.1rem',
-          xl: '1.7rem',
+          base: '1.4rem',
+          xl: '1.5rem',
           xxl: '2rem'
         }
         },
