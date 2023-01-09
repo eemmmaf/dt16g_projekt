@@ -1,22 +1,21 @@
 <template>
-    <div class="maincontent  shadow-lg relative top-5">
-        <div class="responsive-table bg-light-color border">
-            <h2 class="text-dark-color font-headings font-bold text-xl mt-5 w-full table-auto">Min inköpslista</h2>
-            <table class="table-auto border-collapse text-center shadow-md  mt-5">
-                <thead class="font-headings">
-                    <tr>
-                        <th>Namn</th>
-                        <th>Antal</th>
-                        <th>Kategori</th>
-                        <th>Ta bort</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!--Använder komponenten List-->
-                    <List @delete="deleteItem(list._id)" @getId="getId(list._id)" v-for="list in items" :list="list"
-                        :key="list._id" />
-                </tbody>
-            </table>
+    <div class="flex">
+        <div>
+            <NavBar />
+        </div>
+        <div class="maincontent  shadow-lg relative top-5">
+            <div class="responsive-table bg-light-color border">
+                <h2 class="text-dark-color font-headings font-bold text-xl mt-5 mb-9 w-full table-auto">Min
+                    inköpslista</h2>
+                <div v-if="emptyMsg">
+                    <p class="text-center">{{ emptyMsg }}</p>
+
+                </div>
+
+                <!--Använder komponenten List-->
+                <List @delete="deleteItem(list._id)" @getId="getId(list._id)" v-for="list in items " :list="list"
+                    :key="list._id" />
+            </div>
         </div>
     </div>
 
@@ -27,6 +26,7 @@
 <script>
 import { onMounted } from 'vue';
 import List from '../components/List.vue';
+import NavBar from '../components/Navbar.vue';
 
 //Importerar komponenten Category
 import Category from '../components/Category.vue';
@@ -44,8 +44,10 @@ export default {
     },
     components: {
         List,
-        Category
+        Category,
+        NavBar
     },
+
 
     methods: {
         //Hämtar alla produkter
@@ -65,7 +67,7 @@ export default {
 
             //Kollar om det finns några produkter sparade och skriver annars ut meddelande
             if (this.items.length === 0) {
-                this.emptyMsg = "Det finns inga lagrade produkter."
+                this.emptyMsg = "Listan är tom."
             }
         },
         //Hämtar klickad produkt
@@ -117,7 +119,7 @@ export default {
 
 <style scoped>
 .maincontent {
-    max-width: 600px;
+    max-width: 500px;
     width: 100%;
     margin: 0 auto;
     min-height: 80vh;

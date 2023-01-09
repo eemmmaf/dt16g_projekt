@@ -1,8 +1,13 @@
 <template>
+    <div class="flex">
+      <div>
+
+        <NavBar />
+
+        </div>
+
 
     <div class="box shadow-lg relative top-5" v-if="item">
-
-
         <form class="mt-2 bg-light-color" @submit.prevent="updateItem(item)">
             <h2 class="text-center font-headings text-xl">Ändra</h2>
 
@@ -15,6 +20,12 @@
                         class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
                     <input v-model="item.name" type="text" id="namn" name="namn"
                         class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1">
+
+
+                    <!--Kontroll om namn saknas och skriver ut felmeddelande-->
+                    <div v-if="errorName">
+                        <span class="text-complement-color font-bold">{{ errorName }}</span>
+                    </div>
                 </div>
 
 
@@ -25,6 +36,11 @@
                         class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
                     <input v-model="item.quantity" type="text" id="quantity" name="quantity"
                         class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1">
+
+
+                    <div v-if="errorQuantity">
+                        <span class="text-complement-color font-bold">{{ errorQuantity }}</span>
+                    </div>
                 </div>
 
                 <!--Select med kategorier-->
@@ -32,16 +48,13 @@
                     <label class="font-bold font-headings" for="category">Kategori </label><i
                         class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
 
-                    <select v-model="item.category_item"
-                        class="border-solid border border-slate-400 bg-white p-1">7
-                        <option v-for="category_item in categories" :value="item.category_item">
-                            {{ category_item.category_name }}
+                    <select v-model="item.category" :value="item.category"
+                        class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1">
+                        <option v-for="option in categories" :value="option.category_name">
+                            {{ option.category_name }}
                         </option>
                     </select>
                 </div>
-
-
-
 
 
                 <!--Måttenhet-->
@@ -49,7 +62,7 @@
                     <label class="font-bold font-headings" for="measure">Måttenhet </label><i
                         class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
                     <!--Select med olika enheter-->
-                    <select v-model="item.measure" :value="item.select"
+                    <select v-model="item.measure" :value="item.measure"
                         class="border-solid border border-slate-400 bg-white p-1">
                         <option v-for="select in measures" :value="select.unit">
                             {{ select.unit }}
@@ -59,25 +72,26 @@
 
                 <!--Knapp för att uppdatera-->
                 <div>
-                    <button class="p-3 rounded-md shadow-md bg-complement-color text-light-color cursor-pointer" type="submit">Spara
+                    <button class="p-3 rounded-md shadow-md bg-complement-color text-light-color cursor-pointer"
+                        type="submit">Spara
                     </button>
                 </div>
             </div>
         </form>
-
-
-
     </div>
-
-
+</div>
 
 </template>
 
 
 <script>
+import NavBar from '../components/Navbar.vue';
 
 export default {
     props: ['id'],
+    components: {
+        NavBar
+    },
     data() {
         return {
             items: [],
@@ -90,7 +104,9 @@ export default {
             categories: [],
             select: "",
             unit: "",
-            category_item: ""
+            category_name: "",
+            errorName: "",
+            errorQuantity: ""
         }
     },
     methods: {
@@ -104,8 +120,6 @@ export default {
             });
             const data = await resp.json();
             this.item = data;
-            console.log(this.item);
-
 
             //Om parametern ändras(vid sökning främst) uppdateras innehållet på sidan 
             this.$watch(
@@ -148,12 +162,12 @@ export default {
 
         //Uppdaterar vara
         async updateItem(item) {
-            if (item.name != "") {
+            if (item.name && item.quantity != "") {
                 let updatedBody = {
                     _id: this.id,
                     name: item.name,
-                    category: item.category_item,
-                    measure: item.select,
+                    category: item.category,
+                    measure: item.measure,
                     quantity: item.quantity
                 };
                 //Fetch-anrop med metoden PUT
@@ -165,7 +179,25 @@ export default {
                     },
                     body: JSON.stringify(updatedBody)
                 });
-                this.$router.push({path: '/list'});
+
+                //Gör felmeddelanden tomma 
+                this.errorName = "";
+                this.errorQuantity = "";
+
+                //Skickar användaren till listan om det läggs in
+                this.$router.push({ path: '/' });
+            } else {
+
+                this.errorName = "";
+                this.errorQuantity = "";
+
+                //Kontroll om fält är tomma
+                if (item.name == "") {
+                    this.errorName = "Namn måste fyllas i";
+                }
+                if (!item.quantity) {
+                    this.errorQuantity = "Antal måste fyllas i";
+                }
             }
         }
     },
@@ -180,19 +212,20 @@ export default {
 </script>
 
 <style scoped>
-button{
-margin-left: 0.5rem;
-margin-top: 1rem;
+button {
+    margin-left: 0.5rem;
+    margin-top: 1rem;
 }
 
-.box{
+.box {
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
     min-height: 80vh;
 }
 
-form{
+form {
     padding: 1rem;
+    min-height: 180px;
 }
 </style>

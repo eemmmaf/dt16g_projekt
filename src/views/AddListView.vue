@@ -1,15 +1,15 @@
 <template>
-    <div class="flex">
+    <div class="flex relative z-20">
         <div>
             <Navbar />
         </div>
-        <div class="bg-light-color maincontent">
-            <h2>Lägg till i handlingslista</h2>
+        <div class="bg-light-color maincontent self-baseline">
+            <h2 class="text-center font-headings text-xl font-bold">Lägg till i handlingslista</h2>
             <!--Formulär-->
             <form @submit.prevent="addItem()">
 
                 <!--Skriver ut meddelande om produkten läggs till-->
-                <div class="text-base font-content font-bold text-dark-color" v-if="success">
+                <div class="text-sm font-content text-center text-dark-color" v-if="success">
                     {{ success }} <i class="fa-solid fa-circle-check text-green-600"></i>
                 </div>
 
@@ -20,8 +20,8 @@
                     <input v-model="name" type="text" id="namn" name="namn"
                         class="border-solid border border-slate-400 shadow-md rounded bg-white p-1">
                     <!-- Kontroll om felmeddelande och skriver ut om fel -->
-                    <div class=" text-error font-bold font-content" v-if="nameError">
-                        <span>{{ nameError }}</span>
+                    <div v-if="errorName">
+                        <span class="text-complement-color font-bold">{{ errorName }}</span>
                     </div>
                 </div>
 
@@ -30,7 +30,7 @@
                     <label class="font-bold font-headings" for="category">Kategori </label><i
                         class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
 
-                        
+
                     <!--Select med kategorier-->
                     <select v-model="category_item"
                         class="border-solid border border-slate-400 shadow-md rounded bg-white p-1">7
@@ -39,6 +39,10 @@
                             {{ category_item.category_name }}
                         </option>
                     </select>
+
+                    <div v-if="errorCategory">
+                                <span class="text-complement-color font-bold">{{ errorCategory }}</span>
+                            </div>
                 </div>
 
                 <!--Mått och antal-->
@@ -46,7 +50,12 @@
                     <div class="flex justify-between">
                         <div>
                             <label class="font-bold font-headings" for="quantity">Antal </label>
-                            <input class="p-1" type="number" id="quantity" name="quantity" v-model="quantity">
+                            <input class="p-1 border-solid border border-slate-400 rounded" type="number" id="quantity"
+                                name="quantity" v-model="quantity">
+
+                            <div v-if="errorQuantity">
+                                <span class="text-complement-color font-bold">{{ errorQuantity }}</span>
+                            </div>
                         </div>
 
 
@@ -62,13 +71,18 @@
                                     {{ select.unit }}
                                 </option>
                             </select>
+
+                            
+                    <div v-if="errorMeasure">
+                                <span class="text-complement-color font-bold">{{ errorMeasure }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!--Knapp för att lägga till-->
-                <div>
-                    <button class="p-3 rounded-md shadow-md" type="submit">Lägg till
+                <div class="mt-8">
+                    <button class="p-3 rounded-md shadow-md bg-complement-color" type="submit">Lägg till
                     </button>
                 </div>
 
@@ -91,18 +105,23 @@ export default {
             unit: "",
             measures: [],
             quantity: "",
-            nameError: "",
             categoryError: "",
             categories: [],
             category_name: "",
             select: "",
             success: "",
-            category_item: ""
+            category_item: "",
+            errorName: "",
+            errorQuantity: ""
         }
     },
     methods: {
         async addItem() {
-            if (this.name && this.category_item && this.select && this.quantity != "") {
+            if (this.name && this.select && this.quantity != "") {
+                if(this.category_item == ""){
+                    this.category_item = "Ospecificerat";
+                }
+              
                 let createdBody = {
                     name: this.name,
                     category: this.category_item,
@@ -121,6 +140,37 @@ export default {
                 });
 
                 this.success = "Vara tillagd";
+
+                this.errorName = "";
+                this.errorQuantity = "";
+                this.errorMeasure = "";
+                this.errorCategory = "";
+            
+
+            } else {
+                this.errorName = "";
+                this.errorQuantity = "";
+                this.errorMeasure = "";
+                this.errorCategory = "";
+
+                if (this.name == "") {
+                    this.errorName = "Namn måste fyllas i";
+                }
+
+                if (this.category_item == "") {
+                    this.errorCategory = "Kategori måste väljas";
+                }
+
+
+                if (this.select == "") {
+                    this.errorMeasure = "Mått måste väljas";
+                }
+
+
+
+                if (!this.quantity) {
+                    this.errorQuantity = "Antal måste fyllas i";
+                }
             }
         },
         //Hämtar alla kategorier
@@ -157,7 +207,7 @@ export default {
 
 <style scoped>
 .maincontent {
-    max-width: 600px;
+    max-width: 500px;
     width: 100%;
     margin: 1rem auto;
 }
@@ -168,7 +218,7 @@ h2 {
 }
 
 .input {
-    max-width: 500px;
+    max-width: 300px;
     width: 100%;
     margin: 2rem auto;
     display: block;
@@ -177,24 +227,22 @@ h2 {
 input[type="text"],
 select {
     width: 100%;
-    border: 1px solid #5E64FF;
 }
 
 input[type="number"],
 #measure {
-    max-width: 200px;
+    max-width: 250px;
     width: 100%;
-    border: 1px solid #5E64FF;
 }
 
 
 form {
-    max-width: 600px;
+    max-width: 500px;
     width: 100%;
 }
 
 .flexcontainer {
-    max-width: 400px;
+    max-width: 350px;
     width: 100%;
     display: block;
     margin: auto;
@@ -207,9 +255,14 @@ form {
 button {
     max-width: 200px;
     width: 100%;
-    margin: auto;
+    margin: 3rem auto;
     display: block;
-    background-color: #121af6;
     color: white;
+}
+
+@media only screen and (max-width: 750px) {
+    .maincontent{
+        min-height: 70vh;
+    }
 }
 </style>
