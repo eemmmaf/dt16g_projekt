@@ -1,16 +1,19 @@
 <template>
-
-    <div class="orange">
-        <h3 class="text-orange-600">
-            {{ category.category_name }}</h3>
+    <div class="categorybox bg-main-color py-5 shadow-md">
+        <div @click="$emit('deleteCategory')"><i
+                                class="fa-solid fa-trash-can text-complement-color cursor-pointer delete"></i></div>
+               
+        <router-link class="text-dark-color underline text-base" :to="{name: 'singlecategory', params: { id: category._id } }">
+        {{ category.category_name }}
+    </router-link>
     </div>
-
 
 </template>
 
 <script>
 
 export default {
+    emits: ['deleteCategory'],
     props: {
         category: Object
     }
@@ -19,5 +22,17 @@ export default {
 </script>
 
 <style scoped>
+
+.categorybox{
+    max-width: 200px;
+    text-align: center;
+    position: relative;
+}
+
+.delete{
+    position: absolute;
+    right: 0.2rem;
+    top: 0.2rem;
+}
 
 </style>
