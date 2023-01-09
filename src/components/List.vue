@@ -1,20 +1,46 @@
 <template>
 
-    <tr v-bind:id="list._id" @click="handleClick" :style="{
-    textDecoration: active ? 'line-through' : 'none',
+    <article class="articles cursor-pointer" v-bind:id="list._id" @click="handleClick" :style="{
+    textDecorationLine: active ? 'line-through' : 'none',
     backgroundColor: active ? 'gainsboro' : 'white',
     color: active ? 'grey' : 'black'
 }">
-        <td class="py-5"> {{ list.name }} </td>
-        <td>{{ list.quantity }} {{ list.measure }} </td>
-        <td>{{ list.category }} </td>
 
-        <!--Knapp för att ta bort-->
-        <td @click="$emit('delete')"><i class="fa-xl fa-solid fa-trash cursor-pointer text-dark-color"></i></td>
+        <div class="flex justify-between">
+            <div>
 
-        <Router-link class="text-dark-color" :to="{ name: 'edit', params: { id: list._id } }"><i
-                class="fa-xl fa-solid fa-pen hover:text-medium-color"></i></Router-link>
-    </tr>
+                <div class="headingcategory text-sm bg-main-color">
+                    <h3 class="text-dark-color">{{ list.category }}</h3>
+                </div>
+                <div class="flex">
+                    <div>
+                <h4 class="text-dark-color text-base mt-2">{{ list.name }} &nbsp;</h4></div>
+                <div>
+                <p class="text-sm mt-2 text-dark-color">{{ list.quantity }} {{ list.measure }}</p></div>
+            </div>
+            </div>
+
+
+
+            <div>
+
+                <!--Knapp för att ta bort-->
+                <div class="flex">
+                    <div class="mr-4">
+                        <p @click="$emit('delete')"><i
+                                class="fa-solid fa-trash-can fa-lg text-complement-color cursor-pointer"></i></p>
+                    </div>
+
+                    <div>
+
+                        <Router-link class="text-dark-color" :to="{ name: 'edit', params: { id: list._id } }"><i
+                                class="fa-solid fa-pencil fa-lg text-complement-color cursor-pointer"></i></Router-link>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </article>
 </template>
 
 <script>
@@ -41,12 +67,14 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-    color: gainsboro;
-
+article {
+    border-bottom: 1px solid gray;
+    padding: 0.5rem;
 }
 
-li {
-    border-bottom: 1px solid black;
+.headingcategory {
+    padding-right: 2rem;
+    padding-left: 0.5rem;
+    width: 250px;
 }
 </style>

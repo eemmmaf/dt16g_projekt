@@ -35,9 +35,6 @@ export default {
 .pagecontainer {
   position: relative;
   min-height: 100vh;
-}
-
-main {
   background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5)), url("./assets/background.jpg");
   background-size: cover;
 }
