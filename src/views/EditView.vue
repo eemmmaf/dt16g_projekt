@@ -1,85 +1,92 @@
 <template>
     <div class="flex">
-      <div>
+        <div>
 
-        <NavBar />
+            <NavBar />
 
         </div>
 
 
-    <div class="box shadow-lg relative top-5" v-if="item">
-        <form class="mt-2 bg-light-color" @submit.prevent="updateItem(item)">
-            <h2 class="text-center font-headings text-xl">Ändra</h2>
+        <div class="box shadow-lg relative top-5" v-if="item">
+            <form class="mt-2 bg-light-color" @submit.prevent="updateItem(item)">
+                <h2 class="text-center font-headings text-xl font-bold">Ändra {{ item.name  }}</h2>
 
-            <!--Flex-container-->
-            <div class="flex justify-center mt-4 gap-x-3">
+                <!--Flex-container-->
+                <div class="flex justify-center flex-col md:flex-row mt-4 gap-x-3">
 
-                <!--Produktens namn-->
-                <div>
-                    <label class="font-bold font-headings" for="name">Namn </label><i
-                        class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
-                    <input v-model="item.name" type="text" id="namn" name="namn"
-                        class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1">
+                    <!--Produktens namn-->
+                    <div class="mt-3">
+                        <label class="font-bold font-headings" for="name">Namn </label><i
+                            class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
+                        <input v-model="item.name" type="text" id="namn" name="namn"
+                            class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1">
 
 
-                    <!--Kontroll om namn saknas och skriver ut felmeddelande-->
-                    <div v-if="errorName">
-                        <span class="text-complement-color font-bold">{{ errorName }}</span>
+                        <!--Kontroll om namn saknas och skriver ut felmeddelande-->
+                        <div v-if="errorName">
+                            <span class="text-complement-color font-bold">{{ errorName }}</span>
+                        </div>
+                    </div>
+
+
+                    <!--Select med kategorier-->
+                    <div class="mt-3">
+                        <label class="font-bold font-headings" for="category">Kategori </label><i
+                            class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
+
+                        <select v-model="item.category" :value="item.category"
+                            class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1">
+                            <option v-for="option in categories" :value="option.category_name">
+                                {{ option.category_name }}
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <!--Produktens antal-->
+
+                    <div class="mt-3">
+                        <label class="font-bold font-headings" for="quantity">Antal</label><i
+                            class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
+                        <input v-model="item.quantity" type="text" id="quantity" name="quantity"
+                            class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1">
+
+
+                        <div v-if="errorQuantity">
+                            <span class="text-complement-color font-bold">{{ errorQuantity }}</span>
+                        </div>
+                    </div>
+
+
+
+                    <!--Måttenhet-->
+                    <div class="flex justify-between">
+                    <div class="input mt-3 md: ml-3">
+                        <label class="font-bold font-headings" for="measure">Mått</label><i
+                            class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
+                        <!--Select med olika enheter-->
+                        <select v-model="item.measure" :value="item.measure"
+                            class="border-solid border border-slate-400 bg-white p-1">
+                            <option v-for="select in measures" :value="select.unit">
+                                {{ select.unit }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <!--Knapp för att uppdatera-->
+                    <div class="mt-3">
+                        <button class="p-4 rounded-md shadow-md bg-complement-color text-light-color cursor-pointer md:p-2"
+                            type="submit">Spara
+                        </button>
                     </div>
                 </div>
-
-
-                <!--Produktens antal-->
-
-                <div>
-                    <label class="font-bold font-headings" for="quantity">Antal</label><i
-                        class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
-                    <input v-model="item.quantity" type="text" id="quantity" name="quantity"
-                        class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1">
-
-
-                    <div v-if="errorQuantity">
-                        <span class="text-complement-color font-bold">{{ errorQuantity }}</span>
-                    </div>
                 </div>
-
-                <!--Select med kategorier-->
-                <div>
-                    <label class="font-bold font-headings" for="category">Kategori </label><i
-                        class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
-
-                    <select v-model="item.category" :value="item.category"
-                        class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1">
-                        <option v-for="option in categories" :value="option.category_name">
-                            {{ option.category_name }}
-                        </option>
-                    </select>
-                </div>
-
-
-                <!--Måttenhet-->
-                <div class="input">
-                    <label class="font-bold font-headings" for="measure">Måttenhet </label><i
-                        class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
-                    <!--Select med olika enheter-->
-                    <select v-model="item.measure" :value="item.measure"
-                        class="border-solid border border-slate-400 bg-white p-1">
-                        <option v-for="select in measures" :value="select.unit">
-                            {{ select.unit }}
-                        </option>
-                    </select>
-                </div>
-
-                <!--Knapp för att uppdatera-->
-                <div>
-                    <button class="p-3 rounded-md shadow-md bg-complement-color text-light-color cursor-pointer"
-                        type="submit">Spara
-                    </button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
+        <div class="bg-light-color self-baseline p-3 notfound" v-else>
+<h2 class="text-center font-headings text-xl font-bold">Ingen vara hittades</h2>
+        </div>
     </div>
-</div>
 
 </template>
 
@@ -120,6 +127,8 @@ export default {
             });
             const data = await resp.json();
             this.item = data;
+
+            console.log(this.item)
 
             //Om parametern ändras(vid sökning främst) uppdateras innehållet på sidan 
             this.$watch(
@@ -227,5 +236,11 @@ button {
 form {
     padding: 1rem;
     min-height: 180px;
+}
+
+.notfound{
+    max-width: 700px;
+    width: 100%;
+    margin: 3rem auto;
 }
 </style>

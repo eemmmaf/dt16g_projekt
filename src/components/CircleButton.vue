@@ -6,8 +6,7 @@
 </router-link>
 </template>
 
-<script>
-</script>
+
 
 <style scoped>
 .circle {

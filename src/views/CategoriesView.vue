@@ -15,6 +15,8 @@
                 {{ deletedMsg }} <i class="fa-solid fa-circle-check text-green-600"></i>
             </div>
             <div class="grid grid-cols-3 gap-4 px-3 py-6 md:grid-cols-4 lg:grid-cols-4 justify-center">
+
+                <!--Använder komponenten Category-->
                 <Category v-for="category in categories" @deleteCategory="deleteCategory(category._id)"
                     @getId="getById(category._id)" :category="category" :key="category._id" />
             </div>
@@ -25,6 +27,7 @@
 
 
 <script>
+
 import Category from '../components/Category.vue';
 import CircleButton from '../components/CircleButton.vue';
 import NavBar from '../components/Navbar.vue';

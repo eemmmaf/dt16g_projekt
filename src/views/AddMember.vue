@@ -1,5 +1,5 @@
 <template>
-    <div class="flex relative z-20">
+    <div class="flex">
         <div>
             <NavBar />
         </div>
@@ -12,14 +12,14 @@
 
                 <!--Meddelande om användare läggs till-->
                 <div class="text-center mt-5 text-base font-content font-bold text-dark-color" v-if="success">
-                    {{ success }} <i class="fa-solid fa-circle-check text-green-600"></i>
+                    {{ success }}
                 </div>
 
                 <!--Användarens mailadress-->
                 <div class="input">
                     <label class="font-bold font-headings mt-3 text-base" for="email">Mailadress</label><br>
                     <input v-model="email" type="email" id="email" name="email"
-                        class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1">
+                        class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1 rounded">
                     <!-- Kontroll om felmeddelande och skriver ut om fel -->
                     <div class=" text-error font-bold font-content" v-if="emailError">
                         <span>{{ emailError }}</span>
@@ -32,7 +32,7 @@
                 <div class="input">
                     <label class="font-bold font-headings" for="password">Lösenord</label><br>
                     <input v-model="password" type="password" id="password" name="password"
-                        class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1">
+                        class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1 rounded">
                     <!-- Kontroll om felmeddelande och skriver ut om fel -->
                     <div class=" text-error font-bold font-content" v-if="passwordError">
                         <span>{{ passwordError }}</span>
@@ -46,7 +46,7 @@
                 <div class="input">
                     <label class="font-bold font-headings" for="verified">Upprepa lösenord</label><br>
                     <input v-model="verifiedPassword" type="password" id="verified" name="verified"
-                        class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1">
+                        class="border-solid border border-slate-400 shadow-sm w-full bg-white p-1 rounded">
 
                     <!-- Kontroll om felmeddelande och skriver ut om fel -->
                     <div class=" text-error font-bold font-content" v-if="passwordVerifyError">
@@ -60,7 +60,9 @@
 
                 <!--Knapp för att lägga till-->
                 <div class="mt-8">
-                    <button class="p-3 rounded-md shadow-md bg-complement-color text-white" type="submit">Lägg till
+                    <button
+                        class="p-3 rounded-md shadow-md bg-complement-color text-white addButton font-headings hover:font-bold"
+                        type="submit">Lägg till
                     </button>
                 </div>
 
@@ -109,8 +111,6 @@ export default {
                         body: JSON.stringify(registerBody)
                     });
                     const data = await resp.json();
-
-
                     //Lägger til ett meddelande om användaren registreras
                     this.success = data.message;
                     //Gör tomma om det lyckas
@@ -130,7 +130,7 @@ export default {
                         this.emailError = "Fyll i en giltig mailadress";
                     }
                     if (!this.password) {
-                        this.passwordError = "Fyll i ett lösenord";
+                        this.passwordError = "Lösenord måste vara minst 6 tecken";
                     }
                     if (!this.passwordVerifyError) {
                         this.passwordVerifyError = "Lösenordet måste upprepas";
@@ -183,7 +183,7 @@ select {
 }
 
 
-button {
+.addButton {
     max-width: 200px;
     width: 100%;
     margin: 4rem auto;

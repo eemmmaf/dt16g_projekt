@@ -6,6 +6,7 @@
         <form
             class="shadow-lg py-8 px-7 bg-white md:max-w-md md:container rounded text-dark-color border-solid border-2 border-main-color">
             <h1 class="text-center font-headings text-xl font-bold">Logga in</h1>
+            
             <!--Skriver ut felmeddelande om inloggning misslyckas-->
             <div v-if="errorMessage">
                 <p class="text-error text-center mt-3 text-sm font-bold font-conent">

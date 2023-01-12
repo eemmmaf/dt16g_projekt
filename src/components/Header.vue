@@ -9,9 +9,7 @@
                     </router-link>
                 </div>
 
-                <div class="justify-self-end">
-                    <!--<SearchBox /> -->
-                </div>
+
 
                 <div class="self-center logout">
                     <LogoutBtn />

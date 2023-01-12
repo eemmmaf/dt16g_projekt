@@ -2,7 +2,7 @@
     <div v-if="$route.name !== 'login'">
         <nav class="bg-light-color shadow-md desktop">
             <ul class="">
-                <!--Skapa ny lista-->
+                <!--Lägga till föremål-->
                 <router-link to="/addlist">
                     <li class="text-sm font-headings font-bold text-dark-color">
                         <i class="fa-solid fa-carrot text-orange-800"></i> Lägg till

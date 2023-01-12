@@ -7,6 +7,8 @@
             <div class="responsive-table bg-light-color border">
                 <h2 class="text-dark-color font-headings font-bold text-xl mt-5 mb-9 w-full table-auto">Min
                     inköpslista</h2>
+
+                <!--Här skrivs felmeddelande ut-->
                 <div v-if="emptyMsg">
                     <p class="text-center">{{ emptyMsg }}</p>
 
@@ -92,7 +94,7 @@ export default {
             const data = await resp.json();
             this.categories = data;
 
-            console.log(this.categories);
+            
         },
 
         async deleteItem(id) {

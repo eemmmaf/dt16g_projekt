@@ -1,5 +1,5 @@
 <template>
-    <div class="flex relative z-20">
+    <div class="flex">
         <div>
             <Navbar />
         </div>
@@ -9,14 +9,13 @@
             <form @submit.prevent="addItem()">
 
                 <!--Skriver ut meddelande om produkten läggs till-->
-                <div class="text-sm font-content text-center text-dark-color" v-if="success">
+                <div class="text-sm font-content text-center text-dark-color font-bold" v-if="success">
                     {{ success }} <i class="fa-solid fa-circle-check text-green-600"></i>
                 </div>
 
                 <!--Föremålets namn-->
                 <div class="input">
-                    <label class="font-bold font-headings" for="name">Namn </label><i
-                        class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
+                    <label class="font-bold font-headings" for="name">Namn </label><br>
                     <input v-model="name" type="text" id="namn" name="namn"
                         class="border-solid border border-slate-400 shadow-md rounded bg-white p-1">
                     <!-- Kontroll om felmeddelande och skriver ut om fel -->
@@ -27,8 +26,7 @@
 
                 <!--Kategori-->
                 <div class="input">
-                    <label class="font-bold font-headings" for="category">Kategori </label><i
-                        class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
+                    <label class="font-bold font-headings" for="category">Kategori </label><br>
 
 
                     <!--Select med kategorier-->
@@ -61,8 +59,7 @@
 
                         <!--Måttenhet-->
                         <div class="input">
-                            <label class="font-bold font-headings" for="measure">Måttenhet </label><i
-                                class="fa-solid fa-pencil fa-2xs text-medium-color"></i><br>
+                            <label class="font-bold font-headings" for="measure">Måttenhet </label><br>
                             <!--Select med olika enheter-->
                             <select v-model="select"
                                 class="border-solid border border-slate-400 shadow-md rounded bg-white p-1">7
@@ -93,6 +90,7 @@
 </template>
 
 <script>
+
 import Navbar from '../components/Navbar.vue';
 
 export default {
@@ -105,14 +103,17 @@ export default {
             unit: "",
             measures: [],
             quantity: "",
-            categoryError: "",
             categories: [],
             category_name: "",
             select: "",
             success: "",
             category_item: "",
             errorName: "",
-            errorQuantity: ""
+            errorQuantity: "",
+            errorCategory : "",
+            errorName : "",
+            categoryError : "",
+            errorMeasure : ""
         }
     },
     methods: {
