@@ -1,3 +1,11 @@
+/*
+ * @Author: Emma Forslund - emfo2102 
+ * @Date: 2023-01-12 02:16:43 
+ * @Last Modified by:   Emma Forslund - emfo2102 
+ * @Last Modified time: 2023-01-12 02:16:43 
+ */
+
+
 <template>
     <button @click="logOut()" class="bg-main-color p-2 text-base rounded-md shadow-md mr-2 hover:bg-light-color">Logga ut</button>
 </template>

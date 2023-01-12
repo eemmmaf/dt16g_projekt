@@ -1,3 +1,10 @@
+/*
+ * @Author: Emma Forslund - emfo2102 
+ * @Date: 2023-01-12 02:15:53 
+ * @Last Modified by:   Emma Forslund - emfo2102 
+ * @Last Modified time: 2023-01-12 02:15:53 
+ */
+
 <template>
     <div class="categorybox bg-main-color py-5 shadow-md">
         <div @click="$emit('deleteCategory')"><i

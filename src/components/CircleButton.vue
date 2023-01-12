@@ -1,3 +1,12 @@
+/*
+ * @Author: Emma Forslund - emfo2102 
+ * @Date: 2023-01-12 02:16:10 
+ * @Last Modified by:   Emma Forslund - emfo2102 
+ * @Last Modified time: 2023-01-12 02:16:10 
+ */
+
+
+
 <template>
     <router-link to="/addcategory">
     <div class="circle shadow-md bg-complement-color">

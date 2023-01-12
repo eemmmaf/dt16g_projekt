@@ -1,3 +1,11 @@
+/*
+ * @Author: Emma Forslund - emfo2102 
+ * @Date: 2023-01-12 02:16:51 
+ * @Last Modified by:   Emma Forslund - emfo2102 
+ * @Last Modified time: 2023-01-12 02:16:51 
+ */
+
+
 <template>
     <div v-if="$route.name !== 'login'">
         <nav class="bg-light-color shadow-md desktop">

@@ -1,3 +1,11 @@
+/*
+ * @Author: Emma Forslund - emfo2102 
+ * @Date: 2023-01-12 02:16:27 
+ * @Last Modified by:   Emma Forslund - emfo2102 
+ * @Last Modified time: 2023-01-12 02:16:27 
+ */
+
+
 <template>
     <!--Header-->
     <div v-if="$route.name !== 'login'">
