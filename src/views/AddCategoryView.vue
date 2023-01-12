@@ -1,24 +1,26 @@
 /*
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2023-01-12 02:17:22 
- * @Last Modified by:   Emma Forslund - emfo2102 
- * @Last Modified time: 2023-01-12 02:17:22 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2023-01-12 02:26:26
  */
 
-
+<!--View där användaren kan lägga till kategorier-->
 <template>
     <div class="flex">
         <div>
             <NavBar />
         </div>
-
-        <!--Formulär där kategorins innehåll skrivs ut så att användaren kan ändra-->
         <div class="maincontent bg-light-color">
             <h2 class="font-bold text-xl text-center py-3">Lägg till kategori</h2>
+
+            <!--Skriver ut meddelande om kategori skapas-->
             <div class="text-center" v-if="success">
                 <p>{{ success }} <i class="fa-solid fa-circle-check text-green-600"></i></p>
 
             </div>
+
+            <!--Formulär där kategorins innehåll skrivs ut så att användaren kan ändra-->
             <form class="mt-2 p-6" @submit.prevent="addCategory()">
                 <div class="flex justify-evenly">
 
@@ -31,18 +33,18 @@
                         <div v-if="nameError">
                             <span class="text-complement-color font-bold">{{ nameError }}</span>
                         </div>
-                  
-                </div>
-                <!--Knapp för att lägga till-->
-                <div class="self-center mt-2">
-                    <button class="p-3 rounded-md shadow-md bg-complement-color text-light-color" type="submit">Lägg
-                        till
-                    </button>
-                </div>
-        </div>
-        </form>
 
-    </div>
+                    </div>
+                    <!--Knapp för att lägga till-->
+                    <div class="self-center mt-2">
+                        <button class="p-3 rounded-md shadow-md bg-complement-color text-light-color" type="submit">Lägg
+                            till
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
     </div>
 </template>
 

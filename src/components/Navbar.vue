@@ -1,12 +1,13 @@
 /*
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2023-01-12 02:16:51 
- * @Last Modified by:   Emma Forslund - emfo2102 
- * @Last Modified time: 2023-01-12 02:16:51 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2023-01-12 02:24:33
  */
 
-
+<!--Komponent för navigering-->
 <template>
+    <!--Gömmer innehållet om användaren befinner sig på logga-in-sidan -->
     <div v-if="$route.name !== 'login'">
         <nav class="bg-light-color shadow-md desktop">
             <ul class="">
@@ -17,12 +18,14 @@
                     </li>
                 </router-link>
 
+                <!--Kategorier-->
                 <router-link to="/categories">
                     <li class="text-sm font-headings font-bold text-dark-color">
                         <i class="fa-solid fa-pen"></i> Kategorier
                     </li>
                 </router-link>
 
+                <!--Lägga till användare-->
                 <router-link to="/addmember">
                     <li class="text-sm font-headings font-bold text-dark-color">
                         <i class="fa-solid fa-user-plus"></i> Medlem

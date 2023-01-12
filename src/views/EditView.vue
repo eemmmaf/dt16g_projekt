@@ -1,9 +1,11 @@
 /*
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2023-01-12 02:18:15 
- * @Last Modified by:   Emma Forslund - emfo2102 
- * @Last Modified time: 2023-01-12 02:18:15 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2023-01-12 02:31:34
  */
+
+<!--View för att uppdatera en vara-->
 
 <template>
     <div class="flex">
@@ -14,7 +16,9 @@
         </div>
 
 
+        <!--Kontroll om item har hittats och skriver isåfall ut-->
         <div class="box shadow-lg relative top-5" v-if="item">
+            <!--Formulär där varans värden skrivs ut i input-fälten -->
             <form class="mt-2 bg-light-color" @submit.prevent="updateItem(item)">
                 <h2 class="text-center font-headings text-xl font-bold">Ändra {{ item.name  }}</h2>
 
@@ -124,7 +128,7 @@ export default {
         }
     },
     methods: {
-        //Hämtar specifik produkt utifrån dess id och anropar getCategories
+        //Hämtar specifik produkt utifrån dess id
         async getById() {
             const resp = await fetch("http://localhost:3000/items/" + this.id, {
                 method: "GET",
@@ -135,7 +139,7 @@ export default {
             const data = await resp.json();
             this.item = data;
 
-            console.log(this.item)
+        
 
             //Om parametern ändras(vid sökning främst) uppdateras innehållet på sidan 
             this.$watch(

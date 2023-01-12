@@ -1,19 +1,21 @@
 /*
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2023-01-12 02:16:35 
- * @Last Modified by:   Emma Forslund - emfo2102 
- * @Last Modified time: 2023-01-12 02:16:35 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2023-01-12 02:23:19
  */
 
-
+<!--Komponent som skriver ut varor i listan-->
 <template>
 
+<!--Artikeln ändrar style vid klick-->
     <article class="articles cursor-pointer" v-bind:id="list._id" @click="handleClick" :style="{
     textDecorationLine: active ? 'line-through' : 'none',
     backgroundColor: active ? 'gainsboro' : 'white',
     color: active ? 'grey' : 'black'
 }">
 
+<!--Skriver ut vara-->
         <div class="flex justify-between">
             <div>
 
@@ -65,6 +67,7 @@ export default {
         }
     },
     methods: {
+        //Metod för att byta style på article-elementet
         handleClick() {
             this.active = !this.active;
         }

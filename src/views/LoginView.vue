@@ -1,14 +1,13 @@
 /*
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2023-01-12 02:18:39 
- * @Last Modified by:   Emma Forslund - emfo2102 
- * @Last Modified time: 2023-01-12 02:18:39 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2023-01-12 02:32:27
  */
 
-
+<!--View för att logga in 
+-->
 <template>
-
-    <!--View för att logga in-->
     <div>
         <!--Formulär för att logga in-->
         <form

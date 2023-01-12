@@ -1,10 +1,11 @@
 /*
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2023-01-12 02:18:06 
- * @Last Modified by:   Emma Forslund - emfo2102 
- * @Last Modified time: 2023-01-12 02:18:06 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2023-01-12 02:29:37
  */
 
+ <!--View som visar alla kategorier -->
 <template>
     <div class="flex">
         <div>
@@ -14,10 +15,14 @@
         </div>
 
         <div class="bg-light-color main py-4 self-baseline">
+
+            <!--Använder komponenten med cirkeln som länkar till addcategory-->
             <div class="absolute right-8 top-0">
                 <CircleButton />
             </div>
             <h2 class="font-bold text-center text-xl">Kategorier</h2>
+
+            <!--Meddelande som meddelar om kategori tagits bort-->
             <div class="text-sm font-content text-center text-dark-color py-3" v-if="deletedMsg">
                 {{ deletedMsg }} <i class="fa-solid fa-circle-check text-green-600"></i>
             </div>
@@ -77,6 +82,7 @@ export default {
             const data = await resp.json();
             this.category = data;
         },
+        //Metod för att ta bort kategori
         async deleteCategory(id) {
             const resp = await fetch("http://localhost:3000/categories/" + id, {
                 //Använder metoden DELETE

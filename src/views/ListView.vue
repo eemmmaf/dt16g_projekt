@@ -1,10 +1,12 @@
 /*
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2023-01-12 02:18:28 
- * @Last Modified by:   Emma Forslund - emfo2102 
- * @Last Modified time: 2023-01-12 02:18:28 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2023-01-12 02:32:02
  */
 
+
+<!--View där alla varor skrivs ut i listan-->
 
 <template>
     <div class="flex">
@@ -71,6 +73,7 @@ export default {
             const data = await resp.json();
             this.items = data;
 
+            //Sorterar utifrån kategori
             this.items.sort(function (a, b) {
                 return a.category.localeCompare(b.category);
             });
@@ -105,6 +108,7 @@ export default {
             
         },
 
+        //Tar bort utifrån id
         async deleteItem(id) {
             const resp = await fetch("http://localhost:3000/items/" + id, {
                 //Använder metoden DELETE

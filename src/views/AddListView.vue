@@ -1,16 +1,18 @@
 /*
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2023-01-12 02:17:49 
- * @Last Modified by:   Emma Forslund - emfo2102 
- * @Last Modified time: 2023-01-12 02:17:49 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2023-01-12 02:27:27
  */
 
-
+<!--View för att lägga till vara i listan-->
 <template>
     <div class="flex">
         <div>
             <Navbar />
         </div>
+
+
         <div class="bg-light-color maincontent self-baseline">
             <h2 class="text-center font-headings text-xl font-bold">Lägg till i handlingslista</h2>
             <!--Formulär-->
@@ -46,9 +48,10 @@
                         </option>
                     </select>
 
+                    <!--Felmeddelande-->
                     <div v-if="errorCategory">
-                                <span class="text-complement-color font-bold">{{ errorCategory }}</span>
-                            </div>
+                        <span class="text-complement-color font-bold">{{ errorCategory }}</span>
+                    </div>
                 </div>
 
                 <!--Mått och antal-->
@@ -59,6 +62,7 @@
                             <input class="p-1 border-solid border border-slate-400 rounded" type="number" id="quantity"
                                 name="quantity" v-model="quantity">
 
+                            <!--Felmeddelande-->
                             <div v-if="errorQuantity">
                                 <span class="text-complement-color font-bold">{{ errorQuantity }}</span>
                             </div>
@@ -77,8 +81,8 @@
                                 </option>
                             </select>
 
-                            
-                    <div v-if="errorMeasure">
+                            <!--Felmeddelande-->
+                            <div v-if="errorMeasure">
                                 <span class="text-complement-color font-bold">{{ errorMeasure }}</span>
                             </div>
                         </div>
@@ -118,19 +122,19 @@ export default {
             category_item: "",
             errorName: "",
             errorQuantity: "",
-            errorCategory : "",
-            errorName : "",
-            categoryError : "",
-            errorMeasure : ""
+            errorCategory: "",
+            errorName: "",
+            categoryError: "",
+            errorMeasure: ""
         }
     },
     methods: {
         async addItem() {
             if (this.name && this.select && this.quantity != "") {
-                if(this.category_item == ""){
+                if (this.category_item == "") {
                     this.category_item = "Ospecificerat";
                 }
-              
+
                 let createdBody = {
                     name: this.name,
                     category: this.category_item,
@@ -154,7 +158,7 @@ export default {
                 this.errorQuantity = "";
                 this.errorMeasure = "";
                 this.errorCategory = "";
-            
+
 
             } else {
                 this.errorName = "";
@@ -270,7 +274,7 @@ button {
 }
 
 @media only screen and (max-width: 750px) {
-    .maincontent{
+    .maincontent {
         min-height: 70vh;
     }
 }

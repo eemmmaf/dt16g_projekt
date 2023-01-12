@@ -1,11 +1,11 @@
 /*
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2023-01-12 02:18:49 
- * @Last Modified by:   Emma Forslund - emfo2102 
- * @Last Modified time: 2023-01-12 02:18:49 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2023-01-12 02:33:18
  */
 
-
+<!--View för att uppdatera kategori-->
 <template>
     <div class="flex">
         <div>
@@ -20,6 +20,8 @@
                     <p>{{ success }} <i class="fa-solid fa-circle-check text-green-600"></i></p>
 
                 </div>
+
+                <!--Formulär med uppdatering-->
                 <form class="mt-2 p-6" @submit.prevent="updateCategory(category)">
                     <div class="flex justify-evenly">
 
@@ -99,6 +101,7 @@ export default {
                 }
             }
         },
+        //Hämtar utifrån id
         async getCategoryId() {
             const resp = await fetch("http://localhost:3000/categories/" + this.id, {
                 method: "GET",

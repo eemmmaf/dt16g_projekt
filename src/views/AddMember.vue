@@ -1,16 +1,18 @@
 /*
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2023-01-12 02:17:55 
- * @Last Modified by:   Emma Forslund - emfo2102 
- * @Last Modified time: 2023-01-12 02:17:55 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2023-01-12 02:28:21
  */
 
-
+<!--View för att lägga till en användare-->
 <template>
     <div class="flex">
         <div>
             <NavBar />
         </div>
+
+
         <div class="bg-light-color maincontent self-baseline px-4">
             <!--Formulär för att lägga till en användare-->
             <form class="mt-2" @submit.prevent="addUser()">
@@ -18,7 +20,7 @@
                 <p class="formtext text-base">Denna användare får tillgång till handlingslistan. Perfekt inför fest,
                     familjemiddag eller storhandlingen! </p>
 
-                <!--Meddelande om användare läggs till-->
+                <!--Meddelande om användare läggs till eller om eposten redan finns i databasen-->
                 <div class="text-center mt-5 text-base font-content font-bold text-dark-color" v-if="success">
                     {{ success }}
                 </div>

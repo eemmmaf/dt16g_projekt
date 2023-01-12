@@ -1,8 +1,8 @@
 /*
  * @Author: Emma Forslund - emfo2102 
  * @Date: 2023-01-12 02:17:13 
- * @Last Modified by:   Emma Forslund - emfo2102 
- * @Last Modified time: 2023-01-12 02:17:13 
+ * @Last Modified by: Emma Forslund - emfo2102
+ * @Last Modified time: 2023-01-12 02:25:48
  */
 
 
@@ -25,6 +25,7 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: ListView,
+      //Kontroll om localstorage har hämtat "token", om det inte finns någon "token" omdirigeras användaren till logga-in-sidan
       beforeEnter: (to, from, next) => {
         if (localStorage.getItem("token")) {
           next()
