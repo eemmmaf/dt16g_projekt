@@ -70,7 +70,8 @@ export default {
         //Metod för att byta style på article-elementet
         handleClick() {
             this.active = !this.active;
-        }
+        },
+        
     }
 }
 
