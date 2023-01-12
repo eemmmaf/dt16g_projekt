@@ -32,12 +32,10 @@
 
 <script>
 import LogoutBtn from '../components/LogoutBtn.vue';
-import SearchBox from '../components/Searchbox.vue';
 
 export default {
     components: {
-        LogoutBtn,
-        SearchBox
+        LogoutBtn
     }
 }
 </script>
